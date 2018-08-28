@@ -185,7 +185,7 @@ function GbtFormatCar() {
         if [ ${GBT_CAR["model-${element}-Text"]+1} ]; then
             text="${new_text//$placeholder/$replacement}"
         else
-            text="${new_text//$placeholder/"{[ ${element} ]}"}"
+            text="${new_text//$placeholder/"\x7b\x7b ${element} \x7d\x7d"}"
         fi
     done
 
