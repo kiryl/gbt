@@ -2,7 +2,8 @@ export GBT_CARS="${GBT__THEME_MYSQL_CARS:=Os, Time, Hostname, Dir, Sign}"
 
 export GBT_CAR_OS_NAME='mysql'
 
-export GBT_CAR_TIME_FORMAT=' \R:\m:\s '
+export GBT_CAR_TIME_FORMAT=' {{ Time }} '
+export GBT_CAR_TIME_TIME_TEXT='\R:\m:\s'
 
 export GBT_CAR_HOSTNAME_FORMAT=' {{ User }}@{{ Host }} '
 export GBT_CAR_HOSTNAME_USER_FG='cyan'
