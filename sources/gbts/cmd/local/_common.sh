@@ -1,10 +1,10 @@
 declare -A GBT__PLUGINS_LOCAL__HASH
-for P in $(echo ${GBT__PLUGINS_LOCAL:-docker,mysql,ssh,vagrant} | sed -r -e 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
+for P in $(echo ${GBT__PLUGINS_LOCAL:-docker,mysql,screen,ssh,su,sudo,vagrant} | sed -r 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
     GBT__PLUGINS_LOCAL__HASH[$P]=1
 done
 
 declare -A GBT__PLUGINS_REMOTE__HASH
-for P in $(echo ${GBT__PLUGINS_REMOTE:-docker,mysql,ssh,su,sudo,vagrant} | sed -r 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
+for P in $(echo ${GBT__PLUGINS_REMOTE:-docker,mysql,screen,ssh,su,sudo,vagrant} | sed -r 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
     GBT__PLUGINS_REMOTE__HASH[$P]=1
 done
 

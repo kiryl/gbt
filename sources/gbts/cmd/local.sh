@@ -7,6 +7,9 @@ fi
 if [ ${GBT__PLUGINS_LOCAL__HASH[mysql]+1} ]; then
     source $GBT__HOME/sources/gbts/cmd/local/mysql.sh
 fi
+if [ ${GBT__PLUGINS_LOCAL__HASH[screen]+1} ]; then
+    source $GBT__HOME/sources/gbts/cmd/local/screen.sh
+fi
 if [ ${GBT__PLUGINS_LOCAL__HASH[ssh]+1} ]; then
     source $GBT__HOME/sources/gbts/cmd/local/ssh.sh
 fi
