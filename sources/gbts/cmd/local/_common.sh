@@ -20,7 +20,7 @@ function gbt__local_rcfile() {
 
     gbt__get_sources >> $GBT__CONF
 
-    echo -e "#!/bin/bash\nbash --rcfile $GBT__CONF \"\$@\"" > $GBT__CONF.bash
+    echo -e "#!/bin/bash\nexec -a gbt.bash bash --rcfile $GBT__CONF \"\$@\"" > $GBT__CONF.bash
     chmod +x $GBT__CONF.bash
 
     echo $GBT__CONF

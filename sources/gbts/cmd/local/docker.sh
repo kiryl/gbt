@@ -11,7 +11,7 @@ function gbt_docker() {
         local GBT__CONF=$(gbt__local_rcfile)
 
         $DOCKER_BIN cp $GBT__CONF $GBT__CONTAINER_ID:$(dirname $GBT__CONF)
-        $DOCKER_BIN exec ${@:2:$(( $# - 2 ))} -it $GBT__CONTAINER_ID bash --rcfile $GBT__CONF
+        $DOCKER_BIN exec ${@:2:$(( $# - 2 ))} -it $GBT__CONTAINER_ID bash -c "exec -a gbt.bash bash --rcfile $GBT__CONF"
         $DOCKER_BIN exec ${@:2:$(( $# - 2 ))} -it $GBT__CONTAINER_ID rm -f $GBT__CONF $GBT__CONF.bash
 
         rm -f $GBT__CONF $GBT__CONF.bash
