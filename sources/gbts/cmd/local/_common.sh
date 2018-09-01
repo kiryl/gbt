@@ -1,15 +1,15 @@
 declare -A GBT__PLUGINS_LOCAL__HASH
-for P in $(echo ${GBT__PLUGINS_LOCAL:-docker,mysql,screen,ssh,su,sudo,vagrant} | sed -r 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
+for P in $(echo ${GBT__PLUGINS_LOCAL:-docker,mysql,screen,ssh,su,sudo,vagrant} | sed -E 's/,\ */ /g' | tr '[:upper:]' '[:lower:]'); do
     GBT__PLUGINS_LOCAL__HASH[$P]=1
 done
 
 declare -A GBT__PLUGINS_REMOTE__HASH
-for P in $(echo ${GBT__PLUGINS_REMOTE:-docker,mysql,screen,ssh,su,sudo,vagrant} | sed -r 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
+for P in $(echo ${GBT__PLUGINS_REMOTE:-docker,mysql,screen,ssh,su,sudo,vagrant} | sed -E 's/,\ */ /g' | tr '[:upper:]' '[:lower:]'); do
     GBT__PLUGINS_REMOTE__HASH[$P]=1
 done
 
 declare -A GBT__CARS_REMOTE__HASH
-for P in $(echo ${GBT__CARS_REMOTE:-dir,git,hostname,os,sign,status,time} | sed -r 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
+for P in $(echo ${GBT__CARS_REMOTE:-dir,git,hostname,os,sign,status,time} | sed -E 's/,\ */ /g' | tr '[:upper:]' '[:lower:]'); do
     GBT__CARS_REMOTE__HASH[$P]=1
 done
 
@@ -40,7 +40,7 @@ function gbt__get_sources_cars() {
 function gbt__get_sources() {
     [ -z "$GBT__HOME" ] && gbt__err "'GBT__HOME' not defined" && return 1
 
-    [ -z "$GBT__SOURCE_MINIMIZE" ] && GBT__SOURCE_MINIMIZE="sed -r -e '/^(\\s*#.*|)\$/d' -e 's/^\\s+//g' -e 's/default([A-Z])/d\\1/g' -e 's/model-/m-/g' -e 's/\\s{2,}/\\x20/g'"
+    [ -z "$GBT__SOURCE_MINIMIZE" ] && GBT__SOURCE_MINIMIZE="sed -E -e '/^(\\ *#.*|)\$/d' -e 's/^\\ +//g' -e 's/default([A-Z])/d\\1/g' -e 's/model-/m-/g' -e 's/\\ {2,}/\\x20/g'"
 
     # Conditional for remote only (GBT__PLUGINS_REMOTE)
     [ -n "${GBT__PLUGINS_REMOTE__HASH[ssh]}" ] && [ -z "$GBT__THEME_SSH" ] && local GBT__THEME_SSH="$GBT__HOME/sources/gbts/theme/ssh/${GBT__THEME_SSH_NAME:-default}.sh"
@@ -48,7 +48,7 @@ function gbt__get_sources() {
 
     (
         echo "export GBT__CONF='$GBT__CONF'"
-        cat $GBT__HOME/sources/gbts/{car,cmd{,/remote}}/_common.sh
+        cat $GBT__HOME/sources/gbts/{cmd{,/remote},car}/_common.sh
 
         # Allow to override default list of cars defined in the theme
         [ -n "$GBT__THEME_REMOTE_CARS" ] && echo "export GBT__THEME_REMOTE_CARS='$GBT__THEME_REMOTE_CARS'"

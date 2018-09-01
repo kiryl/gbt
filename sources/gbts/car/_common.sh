@@ -168,7 +168,7 @@ function GbtFormatCar() {
     local placeholder=',,,,'
 
     for n in 0 1 2 3 4 5 6 7 8 9 10; do
-        local new_text=$(echo "$text" | sed -r 's/\{\{\s*(\w+)\s*\}\}/'$placeholder'/')
+        local new_text=$(echo "$text" | sed -E 's/\{\{\ *[a-zA-Z0-9]+\ *\}\}/'$placeholder'/')
 
         if [[ ${#new_text} == ${#text} ]]; then
             break
@@ -226,7 +226,7 @@ function GbtMain() {
         echo -en $GBT__RETVAL
     fi
 
-    for car in $(echo ${GBT_CARS:-status,os,hostname,dir,git,sign} | sed -r -e 's/(.[^,]+)(,\s*|$)/\L\1 /g'); do
+    for car in $(echo ${GBT_CARS:-status,os,hostname,dir,git,sign} | sed -E 's/,\ */ /g' | tr '[:upper:]' '[:lower:]'); do
         GBT_CAR=()
 
         local unknown=0

@@ -10,7 +10,7 @@ function gbt_vagrant() {
         shift
 
         $VAGRANT_BIN ssh --command "cat /etc/motd 2>/dev/null;
-echo \"$(cat $GBT__CONF | eval "$GBT__SOURCE_COMPRESS" | base64 | tr -d '\r\n')\" | base64 -d | $GBT__SOURCE_DECOMPRESS > $GBT__CONF &&
+echo \"$(cat $GBT__CONF | eval "$GBT__SOURCE_COMPRESS" | base64 | tr -d '\r\n')\" | base64 $GBT__SOURCE_BASE64_DEC | $GBT__SOURCE_DECOMPRESS > $GBT__CONF &&
 exec -a gbt.bash bash --rcfile $GBT__CONF;
 rm -f $GBT__CONF $GBT__CONF.bash" "$@"
     fi

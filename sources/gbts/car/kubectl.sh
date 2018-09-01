@@ -11,7 +11,7 @@ function GbtCarKubectl() {
 
         declare -A contextInfo
         local i=0
-        for N in $(kubectl config get-contexts | grep '^*' | sed -r 's/^\*\s+//'); do
+        for N in $(kubectl config get-contexts | grep '^*' | sed -E 's/^\*\ +//'); do
             if [[ $i == 0 ]]; then
                 contextInfo[context]=$N
             elif [[ $i == 1 ]]; then

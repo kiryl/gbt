@@ -38,10 +38,10 @@ export GBT__CARS_REMOTE='Status, Os, Time, Hostname, Dir, Custom, Git, Sign'
 export GBT__THEME_SSH=$GBT__HOME/sources/gbts/theme/local/basic.sh
 
 # List of plugins to pack for the remote
-export GBT__PLUGINS_REMOTE='docker,mysql,ssh,su,sudo,vagrant'
+export GBT__PLUGINS_REMOTE='docker,mysql,screen,ssh,su,sudo,vagrant'
 
-# List of plugins to pack for local commands (su, sudo, docker, vagrant)
-export GBT__PLUGINS_LOCAL='docker,mysql,ssh,su,sudo,vagrant'
+# List of plugins to pack for local commands
+export GBT__PLUGINS_LOCAL='docker,mysql,screen,ssh,su,sudo,vagrant'
 
 # Suppress code minimizing
 export GBT__SOURCE_MINIMIZE='cat'
@@ -51,4 +51,7 @@ export GBT__SOURCE_COMPRESS='cat'
 
 # Suppress code decompressin
 export GBT__SOURCE_DECOMPRESS='cat'
+
+# Set base64 decompressing switch for MacOS
+export GBT__SOURCE_BASE64_DEC='-D'
 ```
