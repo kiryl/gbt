@@ -1,7 +1,7 @@
 source $GBT__HOME/sources/gbts/cmd/_common.sh
 source $GBT__HOME/sources/gbts/cmd/local/_common.sh
 
-if [ -n "${GBT__PLUGINS_LOCAL__HASH[docker]}" ]; then
+if [ ${GBT__PLUGINS_LOCAL__HASH[docker]+1} ]; then
     source $GBT__HOME/sources/gbts/cmd/local/docker.sh
 fi
 if [ ${GBT__PLUGINS_LOCAL__HASH[mysql]+1} ]; then
