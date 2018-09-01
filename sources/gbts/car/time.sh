@@ -28,9 +28,9 @@ function GbtCarTime() {
     local defaultRootFm=${GBT_CAR_FM:-none}
 
     GbtCarTimeFormat "${GBT_CAR_TIME_DATE_FORMAT:-Mon 02 Jan}"
-    local defaultDateText=$(date "+$GBT__RETVAL")
+    local defaultDateText=$(${GBT_CAR_EXECTIME__DATE:-date} "+$GBT__RETVAL")
     GbtCarTimeFormat "${GBT_CAR_TIME_TIME_FORMAT:-15:04:05}"
-    local defaultTimeText=$(date "+$GBT__RETVAL")
+    local defaultTimeText=$(${GBT_CAR_EXECTIME__DATE:-date} "+$GBT__RETVAL")
 
     GBT_CAR=(
         [model-root-Bg]=${GBT_CAR_TIME_BG:-$defaultRootBg}
