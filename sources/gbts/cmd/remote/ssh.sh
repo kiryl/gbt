@@ -6,9 +6,8 @@ function gbt_ssh() {
 
     [ -z $SSH_BIN ] && return 1
 
-    $SSH_BIN -t "$@" "
-        cat /etc/motd 2>/dev/null;
-        echo \"$(cat $GBT__CONF | eval "$GBT__SOURCE_COMPRESS" | base64 | tr -d '\r\n')\" | base64 -d | $GBT__SOURCE_DECOMPRESS > $GBT__CONF &&
-        exec -a gbt.bash bash --rcfile $GBT__CONF;
-        rm -f $GBT__CONF $GBT__CONF.bash"
+    $SSH_BIN -t "$@" "cat /etc/motd 2>/dev/null;
+echo \"$(cat $GBT__CONF | eval "$GBT__SOURCE_COMPRESS" | base64 | tr -d '\r\n')\" | base64 -d | $GBT__SOURCE_DECOMPRESS > $GBT__CONF &&
+exec -a gbt.bash bash --rcfile $GBT__CONF;
+rm -f $GBT__CONF $GBT__CONF.bash"
 }
